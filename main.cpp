@@ -1,9 +1,4 @@
-#include <cstdlib>
-#include <iostream>
-
 #include "wermz.h"
-
-using namespace std;
 
 void print_help()
 {

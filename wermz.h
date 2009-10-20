@@ -1,6 +1,7 @@
 #ifndef WERMZ_H
 #define WERMZ_H
 
+#include "constants.h"
 #include "logger.h"
 
 class Wermz
