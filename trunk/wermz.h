@@ -3,6 +3,7 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <fstream>
 
 #if defined WIN32 || defined WIN64
 #include "win_funcs.h"
@@ -15,12 +16,6 @@
 
 using namespace std;
 
-#if defined WIN32 || defined WIN64
-string data_path = string(getenv("APPDATA")) + "\\wermz";
-#else
-string data_path = string(getenv("HOME")) + "/.wermz";
-#endif
-
 class Wermz
 {
 public:
@@ -29,9 +24,11 @@ public:
     bool init();
     bool run();
     bool quit();
+    void parse_constants_init();
     
 private:
     Logger *logger;
+    string data_path;
 };
 
 #endif
