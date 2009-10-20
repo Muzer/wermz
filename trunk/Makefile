@@ -13,3 +13,5 @@ $(EXECUTABLE): $(OBJECTS)
 .cpp.o:
 	$(CXX) $(CFLAGS) $< -o $@
 
+clean:
+	rm -fv $(OBJECTS) $(EXECUTABLE)
