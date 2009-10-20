@@ -42,10 +42,10 @@ bool Wermz::quit()
 
 void Wermz::parse_constants_init()
 {
-    string str;
     ifstream file;
     file.open("data/constants.ini");
     string line;
+    string dict;
     if (file.is_open())
     {
         while (! file.eof())
@@ -53,7 +53,18 @@ void Wermz::parse_constants_init()
             getline(file, line);
             if (line[0] == '[' && line[line.length() - 1] == ']')
             {
-                cout << line << endl;
+                dict = line.substr(1, line.length() - 2);
+            }
+            else
+            {
+                if (line.find("=", 0) != string::npos)
+                {
+                    string var;
+                    string res;
+                    var = line.substr(0, line.find("=", 0));
+                    res = line.substr(line.find("=", 0) + 1, line.length() - 1);
+                    logger->print(dict + ": [" + var + ":" + res + "]");
+                }
             }
         }
     }
@@ -62,9 +73,5 @@ void Wermz::parse_constants_init()
         cout << "ERROR: Unable to open constants.ini." << endl;
         exit(1);
     }
-    // >> Set dict_name if [dict_name]
-    // >> Set variable_name if variable_name=hello
-    // >> Set str to whatever you have done.
-    logger->print(str);
-    // Close File
+    file.close();
 }
