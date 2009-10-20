@@ -51,7 +51,7 @@ void Wermz::parse_constants_init()
         while (! file.eof())
         {
             getline(file, line);
-            if (line[0] == "[" && line[line.length() - 1] == "]")
+            if (line[0] == '[' && line[line.length() - 1] == ']')
             {
                 cout << line << endl;
             }
