@@ -1,9 +1,8 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-#include <cstdlib>
-#include <iostream>
+// Explosion radius
 
-using namespace std;
+// Explosion Push Factor
 
 #endif

@@ -4,3 +4,7 @@ logger.h
 main.cpp
 wermz.cpp
 wermz.h
+win_funcs.cpp
+win_funcs.h
+lin_funcs.cpp
+lin_funcs.h

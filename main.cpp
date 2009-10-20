@@ -10,34 +10,32 @@ void print_help()
 
 int main(int argc, char *argv[])
 {
-    Wermz *game;
+    bool d = false;
     if (argc == 1)
     {
-        game = new Wermz(false);
-    }
-    else if (argc == 2)
-    {
-        if (string(argv[1]) == "-h")
-        {
-            print_help();
-        }
-        else if (string(argv[1]) == "-d")
-        {
-            game = new Wermz(true);
-        }
-        else
-        {
-            cout << "Flag " << argv[1] << " has been ignored because it does not mean anything." << endl;
-            game = new Wermz(false);
-        }
+        d = false;
     }
     else
     {
-        cout << "Some flags have been ignored because they did not mean anything." << endl;
-        game = new Wermz(false);
+        int i;
+        for (i = 1; i < argc; i++)
+        {
+            if (string(argv[i]) == "-h" or string(argv[i]) == "--help")
+            {
+                print_help();
+            }
+            else if (string(argv[i]) == "-d" or string(argv[i]) == "--debug")
+            {
+                d = true;
+            }
+            else
+            {
+                cout << "Flag " << argv[i] << " has been ignored because it does not mean anything." << endl;
+            }
+        }
     }
-    game->init();
-    game->run();
-    game->quit();
-    delete game;
+    Wermz game(d);
+    game.init();
+    game.run();
+    game.quit();
 }
