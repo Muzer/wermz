@@ -1,6 +1,6 @@
 CXX=g++
-CFLAGS=-c -Wall -O3 -lQtCore
-LDFLAGS=-lQtCore
+CFLAGS=-c -Wall -O3
+LDFLAGS=
 SOURCES=main.cpp wermz.cpp wermz.h logger.cpp logger.h constants.h
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=wermz
