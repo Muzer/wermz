@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <fstream>
+#include <map>
 
 #if defined WIN32 || defined WIN64
 #include "win_funcs.h"
@@ -12,6 +13,7 @@
 #endif
 
 #include "constants.h"
+#include "dictionary.h"
 #include "logger.h"
 
 using namespace std;

@@ -8,3 +8,5 @@ win_funcs.cpp
 win_funcs.h
 lin_funcs.cpp
 lin_funcs.h
+dictionary.h
+dictionary.cpp
