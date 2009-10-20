@@ -54,6 +54,7 @@ void Wermz::parse_constants_init()
             if (line[0] == '[' && line[line.length() - 1] == ']')
             {
                 dict = line.substr(1, line.length() - 2);
+                dictionaries[dict] = Dictionary();
             }
             else
             {
@@ -64,6 +65,7 @@ void Wermz::parse_constants_init()
                     var = line.substr(0, line.find("=", 0));
                     res = line.substr(line.find("=", 0) + 1, line.length() - 1);
                     logger->print(dict + ": [" + var + ":" + res + "]");
+                    dictionaries[dict].dict[var] = res;
                 }
             }
         }
