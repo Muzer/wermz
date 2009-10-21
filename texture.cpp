@@ -30,6 +30,7 @@ Texture::Texture(string path, int type)
     }
     else if (type == 1)
     {
+
     }
     else
     {
