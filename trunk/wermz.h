@@ -30,6 +30,8 @@ public:
     bool quit();
     void parse_constants_init();
     void init_sdl();
+    GLuint get_texture(string path);
+    bool main_menu();
     
 private:
     Logger *logger;

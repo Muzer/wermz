@@ -33,13 +33,33 @@ bool Wermz::run()
 {
     bool result = true;
     logger->print("Running run()");
+    while (result)
+    {
+        if (!main_menu())
+        {
+            result = false;
+        }
+    }
     return result;
+}
+
+bool Wermz::main_menu()
+{
+    bool running = true;
+    GLuint logo = get_texture("data/misc/logo.svg");
+    while (running)
+    {
+        SDL_GL_SwapBuffers();
+    }
+    glDeleteTextures(1, &logo);
+    return true;
 }
 
 bool Wermz::quit()
 {
     bool result = true;
     logger->print("Running quit()");
+    SDL_Quit();
     return result;
 }
 
@@ -108,46 +128,43 @@ void Wermz::init_sdl()
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+}
 
-/*    GLuint texture; // Texture object handle
-    SDL_Surface *surface; // Gives us the information to make the texture
+GLuint Wermz::get_texture(string path)
+{
+    GLuint texture;
+    SDL_Surface *surface;
 
-    if ( (surface = SDL_LoadBMP("image.bmp")) ) {
-
-        // Check that the image's width is a power of 2
-        if ( (surface->w & (surface->w - 1)) != 0 ) {
-            printf("warning: image.bmp's width is not a power of 2\n");
+    if ((surface = SDL_LoadBMP(path.c_str())))
+    {
+        if ((surface->w & (surface->w - 1)) != 0)
+        {
+            logger->print(path + "'s width is not a power of 2");
         }
-
-        // Also check if the height is a power of 2
-        if ( (surface->h & (surface->h - 1)) != 0 ) {
-            printf("warning: image.bmp's height is not a power of 2\n");
+        if ((surface->h & (surface->h - 1)) != 0)
+        {
+            logger->print(path + "'s height is not a power of 2");
         }
-
-        // Have OpenGL generate a texture object handle for us
-        glGenTextures( 1, &texture );
-
-        // Bind the texture object
-        glBindTexture( GL_TEXTURE_2D, texture );
-
-        // Set the texture's stretching properties
-        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-
-        // Edit the texture object's image data using the information SDL_Surface gives us
-        glTexImage2D( GL_TEXTURE_2D, 0, 3, surface->w, surface->h, 0,
-                      GL_BGR, GL_UNSIGNED_BYTE, surface->pixels );
+        glGenTextures(1, &texture);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexImage2D(GL_TEXTURE_2D, 0, 3, surface->w, surface->h, 0, GL_BGR, GL_UNSIGNED_BYTE, surface->pixels);
     }
-    else {
-        printf("SDL could not load image.bmp: %s\n", SDL_GetError());
+    else
+    {
+        cout << "Could not load image " << path << ": " << SDL_GetError() << endl;
         SDL_Quit();
-        return 1;
+        exit(1);
     }
 
-    // Free the SDL_Surface only if it was successfully created
-    if ( surface ) {
-        SDL_FreeSurface( surface );
+    if (surface)
+    {
+        SDL_FreeSurface(surface);
     }
+    return texture;
+}
+/*
 
     // Clear the screen before drawing
         glClear( GL_COLOR_BUFFER_BIT );
@@ -172,17 +189,11 @@ void Wermz::init_sdl()
         glTexCoord2i( 0, 1 );
         glVertex3f( 100, 228, 0 );
     glEnd();
-*/
-    SDL_GL_SwapBuffers();
+
 
     // Wait for 3 seconds to give us a chance to see the image
-    SDL_Delay(3000);
-
     // Now we can delete the OpenGL texture and close down SDL
-    //glDeleteTextures( 1, &texture );
-
-    SDL_Quit();
-}
+    */
 
 void print_help()
 {
