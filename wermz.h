@@ -15,6 +15,9 @@
 #include "constants.h"
 #include "logger.h"
 
+#include "SDL.h"
+#include "SDL_opengl.h"
+
 using namespace std;
 
 class Wermz
@@ -26,10 +29,12 @@ public:
     bool run();
     bool quit();
     void parse_constants_init();
+    void init_sdl();
     
 private:
     Logger *logger;
     string data_path;
+    SDL_Surface *screen;
 };
 
 #endif
