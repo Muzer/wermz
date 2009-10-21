@@ -1,7 +1,8 @@
 #include "texture.h"
 
-Texture::Texture(string path, int type)
+Texture::Texture(string path, int t)
 {
+    type = t;
     if (type == 0)
     {
         SDL_Surface *surface;
@@ -30,7 +31,7 @@ Texture::Texture(string path, int type)
     }
     else if (type == 1)
     {
-
+        SDL_svg_context *svg_tec = SVG_Load(path.c_str());
     }
     else
     {
@@ -57,24 +58,24 @@ void Texture::draw(int x, int y, int scale, int x_origin, int y_origin, float ro
     {
         x_origin = (texwidth / 2) * scale;
         y_origin = (texheight / 2) * scale;
-        glLoadIdentity();
-        glTranslatef(x, y, 0);
-
-        if (rotation != 0.0)
-        {
-            glRotatef(rotation, 0, 0, 1);
-        }
-        glBindTexture(GL_TEXTURE_2D, texture);
-
-        glBegin(GL_TRIANGLE_STRIP);
-        glTexCoord2f(0, height_ratio);
-        glVertex3f(-x_origin, texheight - y_origin, 0);
-        glTexCoord2f(width_ratio, height_ratio);
-        glVertex3f(texwidth - x_origin, texheight - y_origin, 0);
-        glTexCoord2f(0, 1);
-        glVertex3f(-x_origin, -y_origin, 0);
-        glTexCoord2f(width_ratio, 1);
-        glVertex3f(texwidth -x_origin, -y_origin, 0);
-        glEnd();
     }
+    glLoadIdentity();
+    glTranslatef(x, y, 0);
+
+    if (rotation != 0.0)
+    {
+        glRotatef(rotation, 0, 0, 1);
+    }
+    glBindTexture(GL_TEXTURE_2D, texture);
+
+    glBegin(GL_TRIANGLE_STRIP);
+    glTexCoord2f(0, height_ratio);
+    glVertex3f(-x_origin, texheight - y_origin, 0);
+    glTexCoord2f(width_ratio, height_ratio);
+    glVertex3f(texwidth - x_origin, texheight - y_origin, 0);
+    glTexCoord2f(0, 1);
+    glVertex3f(-x_origin, -y_origin, 0);
+    glTexCoord2f(width_ratio, 1);
+    glVertex3f(texwidth -x_origin, -y_origin, 0);
+    glEnd();
 }
