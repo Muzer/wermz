@@ -9,3 +9,7 @@ lin_funcs.cpp
 lin_funcs.h
 dictionary.h
 dictionary.cpp
+sprite.cpp
+sprite.h
+texture.h
+texture.cpp

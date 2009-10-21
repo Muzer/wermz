@@ -46,12 +46,23 @@ bool Wermz::run()
 bool Wermz::main_menu()
 {
     bool running = true;
-    GLuint logo = get_texture("data/misc/logo.svg");
+    Texture logo("data/misc/logo.svg", 1);
     while (running)
     {
+        SDL_Event event;
+        while (SDL_PollEvent(&event))
+        {
+            switch (event.type)
+            {
+            case SDL_QUIT:
+                {
+                    return false;
+                    break;
+                }
+            }
+        }
         SDL_GL_SwapBuffers();
     }
-    glDeleteTextures(1, &logo);
     return true;
 }
 
@@ -130,40 +141,6 @@ void Wermz::init_sdl()
     glLoadIdentity();
 }
 
-GLuint Wermz::get_texture(string path)
-{
-    GLuint texture;
-    SDL_Surface *surface;
-
-    if ((surface = SDL_LoadBMP(path.c_str())))
-    {
-        if ((surface->w & (surface->w - 1)) != 0)
-        {
-            logger->print(path + "'s width is not a power of 2");
-        }
-        if ((surface->h & (surface->h - 1)) != 0)
-        {
-            logger->print(path + "'s height is not a power of 2");
-        }
-        glGenTextures(1, &texture);
-        glBindTexture(GL_TEXTURE_2D, texture);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        glTexImage2D(GL_TEXTURE_2D, 0, 3, surface->w, surface->h, 0, GL_BGR, GL_UNSIGNED_BYTE, surface->pixels);
-    }
-    else
-    {
-        cout << "Could not load image " << path << ": " << SDL_GetError() << endl;
-        SDL_Quit();
-        exit(1);
-    }
-
-    if (surface)
-    {
-        SDL_FreeSurface(surface);
-    }
-    return texture;
-}
 /*
 
     // Clear the screen before drawing
