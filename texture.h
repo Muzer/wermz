@@ -4,7 +4,7 @@
 #include "SDL.h"
 #include "SDL_opengl.h"
 #include "SDL_image.h"
-#include "SDl_svg.h"
+#include "SDL_svg.h"
 
 #include <cmath>
 #include <iostream>
