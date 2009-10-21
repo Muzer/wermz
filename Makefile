@@ -1,8 +1,8 @@
 CXX=g++
 CFLAGS=-c -Wall -O3
 LDFLAGS=
-ENDFLAGS=`sdl-config --cflags --libs` -lGL
-SOURCES=wermz.cpp dictionary.cpp logger.cpp win_funcs.cpp lin_funcs.cpp
+ENDFLAGS=`sdl-config --cflags --libs` -lSDL_image -lGL
+SOURCES=wermz.cpp dictionary.cpp logger.cpp win_funcs.cpp lin_funcs.cpp sprite.cpp texture.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=wermz
 
