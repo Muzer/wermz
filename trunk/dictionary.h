@@ -5,8 +5,6 @@
 #include <map>
 #include <string>
 
-#include "constants.h"
-
 using namespace std;
 
 class Dictionary

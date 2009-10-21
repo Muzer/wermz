@@ -13,7 +13,6 @@
 #endif
 
 #include "constants.h"
-#include "dictionary.h"
 #include "logger.h"
 
 using namespace std;

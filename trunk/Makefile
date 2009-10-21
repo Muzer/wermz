@@ -1,7 +1,7 @@
 CXX=g++
 CFLAGS=-c -Wall -O3
 LDFLAGS=
-SOURCES=main.cpp wermz.cpp logger.cpp win_funcs.cpp lin_funcs.cpp dictionary.cpp
+SOURCES=wermz.cpp dictionary.cpp logger.cpp win_funcs.cpp lin_funcs.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=wermz
 
