@@ -1,0 +1,1 @@
+Will have easily customisable weapons and revolve almost exclusively around SVGs. In C++/SDL.
